@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
     void Update()
     {
+        //GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 100);
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
