@@ -45,13 +45,12 @@ public class IgnoreAboveCollisions : MonoBehaviour
             if (col != null)
                 col.enabled = enabled;
         }
-        // if (enabled)
-        // {
-        //     this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = this.gameObject.GetComponent<SpriteRenderer>().sortingOrder - 20;
-        // }
-        // else
-        // {
-        //     this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = this.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 20;
-        // }
+        if (enabled)
+        {
+            this.gameObject.GetComponent<PlayerController>().elevation = 0;
+        }
+        else
+        {
+            this.gameObject.GetComponent<PlayerController>().elevation = 1;        }
     }
 }

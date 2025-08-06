@@ -60,27 +60,30 @@ public static class EditorYSorter
     }
 
     static int ApplyYSorting(GameObject go)
+{
+    // Skip GameObjects tagged as "Player"
+    if (go.CompareTag("Player"))
+        return 0;
+
+    int updated = 0;
+    SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+    if (sr != null)
     {
-        int updated = 0;
-        SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
-        if (sr != null)
+        int order = Mathf.RoundToInt(-go.transform.position.y * 100);
+        if (sr.sortingOrder != order)
         {
-
-            int order = Mathf.RoundToInt(-go.transform.position.y * 100);
-            if (sr.sortingOrder != order)
-            {
-
-                sr.sortingOrder = order;
-                EditorUtility.SetDirty(sr);
-                updated++;
-            }
+            sr.sortingOrder = order;
+            EditorUtility.SetDirty(sr);
+            updated++;
         }
-
-        foreach (Transform child in go.transform)
-        {
-            updated += ApplyYSorting(child.gameObject);
-        }
-
-        return updated;
     }
+
+    foreach (Transform child in go.transform)
+    {
+        updated += ApplyYSorting(child.gameObject);
+    }
+
+    return updated;
+}
+
 }

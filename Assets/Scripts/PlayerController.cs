@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private readonly Vector2 up = new Vector2(2.5f, 1.5f);
     private readonly Vector2 down = new Vector2(-2.5f, -1.5f);
 
+    public int elevation = 0;
     private Rigidbody2D rb;
     private Vector2 movement;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        //GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 100);
+        GetComponent<SpriteRenderer>().sortingOrder = -(int)(transform.position.y * 100) + elevation*1000;
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
